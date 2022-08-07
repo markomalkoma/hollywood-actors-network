@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 500px;
+            height: 500px;
+            background-color: #222222;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"font": {"color": "white"}, "id": "Michael B. Jordan", "label": "Michael B. Jordan", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Jeffrey Wright", "label": "Jeffrey Wright", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Daniel Kaluuya", "label": "Daniel Kaluuya", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Bryan Cranston", "label": "Bryan Cranston", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Martin Freeman", "label": "Martin Freeman", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "David Oyelowo", "label": "David Oyelowo", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Robert Downey Jr", "label": "Robert Downey Jr", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Sterling K. Brown", "label": "Sterling K. Brown", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Lupita Nyong\u0027o", "label": "Lupita Nyong\u0027o", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Letitia Wright", "label": "Letitia Wright", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Octavia Spencer", "label": "Octavia Spencer", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Brie Larson", "label": "Brie Larson", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Carrie Coon", "label": "Carrie Coon", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Samuel L. Jackson", "label": "Samuel L. Jackson", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Michael Keaton", "label": "Michael Keaton", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Emma Stone", "label": "Emma Stone", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Joaquin Phoenix", "label": "Joaquin Phoenix", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Nicole Kidman", "label": "Nicole Kidman", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Allison Janney", "label": "Allison Janney", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Marion Cotillard", "label": "Marion Cotillard", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Tom Hanks", "label": "Tom Hanks", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Gary Oldman", "label": "Gary Oldman", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Mark Ruffalo", "label": "Mark Ruffalo", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Viola Davis", "label": "Viola Davis", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Steve Carell", "label": "Steve Carell", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Denzel Washington", "label": "Denzel Washington", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Mark Rylance", "label": "Mark Rylance", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Charlize Theron", "label": "Charlize Theron", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Idris Elba", "label": "Idris Elba", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Riz Ahmed", "label": "Riz Ahmed", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Jake Gyllenhaal", "label": "Jake Gyllenhaal", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Amy Adams", "label": "Amy Adams", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Benicio Del Toro", "label": "Benicio Del Toro", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Bradley Cooper", "label": "Bradley Cooper", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Reese Witherspoon", "label": "Reese Witherspoon", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Jesse Plemons", "label": "Jesse Plemons", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Josh Brolin", "label": "Josh Brolin", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Jonah Hill", "label": "Jonah Hill", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Kate Winslet", "label": "Kate Winslet", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Jessica Chastain", "label": "Jessica Chastain", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Tom Hiddleston", "label": "Tom Hiddleston", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Chiwetel Ejiofor", "label": "Chiwetel Ejiofor", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Hailee Steinfeld", "label": "Hailee Steinfeld", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Cate Blanchett", "label": "Cate Blanchett", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Matt Damon", "label": "Matt Damon", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Sarah Paulson", "label": "Sarah Paulson", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Julianne Moore", "label": "Julianne Moore", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Oscar Isaac", "label": "Oscar Isaac", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Mahershala Ali", "label": "Mahershala Ali", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Michael Stuhlbarg", "label": "Michael Stuhlbarg", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Michael Fassbender", "label": "Michael Fassbender", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Benedict Cumberbatch", "label": "Benedict Cumberbatch", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Natalie Portman", "label": "Natalie Portman", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Michelle Williams", "label": "Michelle Williams", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Matthew Rhys", "label": "Matthew Rhys", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Ralph Fiennes", "label": "Ralph Fiennes", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Saoirse Ronan", "label": "Saoirse Ronan", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Naomie Harris", "label": "Naomie Harris", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Tilda Swinton", "label": "Tilda Swinton", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Evan Rachel Wood", "label": "Evan Rachel Wood", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Leonardo DiCaprio", "label": "Leonardo DiCaprio", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Meryl Streep", "label": "Meryl Streep", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Tom Cruise", "label": "Tom Cruise", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Taraji P. Henson", "label": "Taraji P. Henson", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Frances McDormand", "label": "Frances McDormand", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Ryan Gosling", "label": "Ryan Gosling", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Christian Bale", "label": "Christian Bale", "shape": "dot", "size": 10}, {"font": {"color": "white"}, "id": "Kyle Chandler", "label": "Kyle Chandler", "shape": "dot", "size": 10}]);
+        edges = new vis.DataSet([{"from": "Michael B. Jordan", "to": "Jeffrey Wright", "weight": 1}, {"from": "Michael B. Jordan", "to": "Daniel Kaluuya", "weight": 1}, {"from": "Michael B. Jordan", "to": "Bryan Cranston", "weight": 1}, {"from": "Michael B. Jordan", "to": "Martin Freeman", "weight": 1}, {"from": "Michael B. Jordan", "to": "David Oyelowo", "weight": 1}, {"from": "Michael B. Jordan", "to": "Robert Downey Jr", "weight": 1}, {"from": "Michael B. Jordan", "to": "Sterling K. Brown", "weight": 1}, {"from": "Michael B. Jordan", "to": "Lupita Nyong\u0027o", "weight": 1}, {"from": "Michael B. Jordan", "to": "Letitia Wright", "weight": 1}, {"from": "Michael B. Jordan", "to": "Octavia Spencer", "weight": 1}, {"from": "Michael B. Jordan", "to": "Brie Larson", "weight": 1}, {"from": "Michael B. Jordan", "to": "Carrie Coon", "weight": 1}, {"from": "Samuel L. Jackson", "to": "Michael Keaton", "weight": 5}, {"from": "Michael Keaton", "to": "Emma Stone", "weight": 1}, {"from": "Michael Keaton", "to": "Robert Downey Jr", "weight": 1}, {"from": "Michael Keaton", "to": "Joaquin Phoenix", "weight": 1}, {"from": "Michael Keaton", "to": "Nicole Kidman", "weight": 1}, {"from": "Michael Keaton", "to": "Allison Janney", "weight": 1}, {"from": "Michael Keaton", "to": "Marion Cotillard", "weight": 1}, {"from": "Michael Keaton", "to": "Tom Hanks", "weight": 3}, {"from": "Michael Keaton", "to": "Gary Oldman", "weight": 1}, {"from": "Michael Keaton", "to": "Mark Ruffalo", "weight": 1}, {"from": "Michael Keaton", "to": "Viola Davis", "weight": 1}, {"from": "Michael Keaton", "to": "Steve Carell", "weight": 1}, {"from": "Michael Keaton", "to": "Denzel Washington", "weight": 1}, {"from": "Michael Keaton", "to": "Mark Rylance", "weight": 1}, {"from": "Emma Stone", "to": "Joaquin Phoenix", "weight": 1}, {"from": "Joaquin Phoenix", "to": "Charlize Theron", "weight": 1}, {"from": "Joaquin Phoenix", "to": "Idris Elba", "weight": 1}, {"from": "Joaquin Phoenix", "to": "Riz Ahmed", "weight": 1}, {"from": "Joaquin Phoenix", "to": "Jake Gyllenhaal", "weight": 1}, {"from": "Joaquin Phoenix", "to": "Amy Adams", "weight": 2}, {"from": "Joaquin Phoenix", "to": "Benicio Del Toro", "weight": 1}, {"from": "Joaquin Phoenix", "to": "Bradley Cooper", "weight": 1}, {"from": "Joaquin Phoenix", "to": "Reese Witherspoon", "weight": 2}, {"from": "Joaquin Phoenix", "to": "Jesse Plemons", "weight": 1}, {"from": "Joaquin Phoenix", "to": "Josh Brolin", "weight": 1}, {"from": "Joaquin Phoenix", "to": "Jonah Hill", "weight": 1}, {"from": "Joaquin Phoenix", "to": "Marion Cotillard", "weight": 2}, {"from": "Joaquin Phoenix", "to": "Kate Winslet", "weight": 1}, {"from": "Joaquin Phoenix", "to": "Mark Ruffalo", "weight": 1}, {"from": "Joaquin Phoenix", "to": "Jessica Chastain", "weight": 1}, {"from": "Joaquin Phoenix", "to": "Nicole Kidman", "weight": 1}, {"from": "Joaquin Phoenix", "to": "Tom Hiddleston", "weight": 1}, {"from": "Joaquin Phoenix", "to": "Chiwetel Ejiofor", "weight": 1}, {"from": "Joaquin Phoenix", "to": "Hailee Steinfeld", "weight": 1}, {"from": "Idris Elba", "to": "Cate Blanchett", "weight": 1}, {"from": "Cate Blanchett", "to": "Matt Damon", "weight": 5}, {"from": "Cate Blanchett", "to": "Sarah Paulson", "weight": 2}, {"from": "Cate Blanchett", "to": "Julianne Moore", "weight": 3}, {"from": "Cate Blanchett", "to": "Oscar Isaac", "weight": 1}, {"from": "Cate Blanchett", "to": "Mahershala Ali", "weight": 1}, {"from": "Cate Blanchett", "to": "Michael Stuhlbarg", "weight": 1}, {"from": "Cate Blanchett", "to": "Mark Ruffalo", "weight": 1}, {"from": "Cate Blanchett", "to": "Michael Fassbender", "weight": 1}, {"from": "Cate Blanchett", "to": "Benedict Cumberbatch", "weight": 5}, {"from": "Cate Blanchett", "to": "Nicole Kidman", "weight": 1}, {"from": "Cate Blanchett", "to": "Natalie Portman", "weight": 2}, {"from": "Cate Blanchett", "to": "Michelle Williams", "weight": 1}, {"from": "Cate Blanchett", "to": "Matthew Rhys", "weight": 1}, {"from": "Cate Blanchett", "to": "Martin Freeman", "weight": 4}, {"from": "Cate Blanchett", "to": "Ralph Fiennes", "weight": 1}, {"from": "Cate Blanchett", "to": "Saoirse Ronan", "weight": 1}, {"from": "Cate Blanchett", "to": "Naomie Harris", "weight": 1}, {"from": "Cate Blanchett", "to": "Tilda Swinton", "weight": 2}, {"from": "Cate Blanchett", "to": "Evan Rachel Wood", "weight": 1}, {"from": "Cate Blanchett", "to": "Jonah Hill", "weight": 2}, {"from": "Cate Blanchett", "to": "Leonardo DiCaprio", "weight": 1}, {"from": "Cate Blanchett", "to": "Meryl Streep", "weight": 1}, {"from": "Cate Blanchett", "to": "Tom Cruise", "weight": 1}, {"from": "Cate Blanchett", "to": "Taraji P. Henson", "weight": 1}, {"from": "Cate Blanchett", "to": "Frances McDormand", "weight": 1}, {"from": "Cate Blanchett", "to": "Ryan Gosling", "weight": 1}, {"from": "Cate Blanchett", "to": "Christian Bale", "weight": 3}, {"from": "Cate Blanchett", "to": "Tom Hiddleston", "weight": 1}, {"from": "Cate Blanchett", "to": "Kyle Chandler", "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>
